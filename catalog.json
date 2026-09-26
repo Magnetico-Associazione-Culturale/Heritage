@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "comment": "Elenco dei comuni mostrati nell'app unica Heritage. L'app scarica questo file all'avvio: per aggiungere un comune basta aggiungere una voce qui, senza ripubblicare. status 'preview' = visibile solo nelle build interne (preview/development).",
+  "comuni": [
+    {
+      "id": "niscemi",
+      "name": "Niscemi",
+      "province": "CL",
+      "region": "Sicilia",
+      "manifest_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/manifest.json",
+      "center": { "lat": 37.1469, "lon": 14.3897 },
+      "radius_km": 10,
+      "logo_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/media/branding/logo.png",
+      "cover_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/media/branding/splash.jpg",
+      "status": "published"
+    },
+    {
+      "id": "bugliano",
+      "name": "Bugliano",
+      "province": "PI",
+      "region": "Toscana",
+      "manifest_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/manifest.json",
+      "center": { "lat": 37.6522, "lon": 14.6408 },
+      "radius_km": 8,
+      "logo_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/media/branding/logo.png",
+      "cover_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/media/branding/splash.jpg",
+      "status": "preview"
+    }
+  ]
+}

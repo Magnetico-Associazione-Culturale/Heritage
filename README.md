@@ -1,12 +1,15 @@
-# Heritage — Architettura white-label per comune
+# Heritage — Contenuti per comune
 
-Questo repo è l'**architettura white-label** dell'app turistica Heritage. L'app nativa ha 6
-sezioni principali — **Home, Itinerario, Tappe, Tour (360°), Quiz, Info** — e legge i
-contenuti da file JSON + media associati. Aggiornando i contenuti, l'app si aggiorna da
-remoto senza ripubblicare sugli store.
+Questo repo contiene i contenuti dell'app turistica **Heritage**: un'**unica app** sugli
+store dentro la quale l'utente sceglie il comune da visitare (da un elenco oppure in
+automatico in base alla sua posizione). L'app ha 6 sezioni principali — **Home, Itinerario,
+Tappe, Tour (360°), Quiz, Info** — e legge i contenuti da file JSON + media associati.
+Aggiornando i contenuti, l'app si aggiorna da remoto senza ripubblicare sugli store.
 
-Ogni comune ha la propria **sottocartella** `Comune di <Nome>/`, completa e autonoma. Per
-aggiungere un comune si **clona** una sottocartella esistente e se ne adattano i contenuti.
+Ogni comune ha la propria **sottocartella** `Comune di <Nome>/`, completa e autonoma, ed è
+elencato nel **catalogo** `catalog.json` nella radice. Per aggiungere un comune si **clona**
+una sottocartella esistente, se ne adattano i contenuti e lo si aggiunge al catalogo: l'app
+lo mostra senza bisogno di una nuova pubblicazione.
 
 ---
 
@@ -14,12 +17,14 @@ aggiungere un comune si **clona** una sottocartella esistente e se ne adattano i
 
 ```
 /
-├── README.md                    # Questa guida (architettura white-label)
+├── README.md                    # Questa guida
+├── catalog.json                 # Catalogo dei comuni mostrati nell'app (punto d'ingresso)
+├── validate_catalog.py          # Validatore del catalogo (eseguire nella radice)
 ├── map.config.json              # Config mappa globale condivisa (provider + chiave Carto)
 │
 ├── Comune di Bugliano/          # Istanza comune (contenuti template di riferimento)
 │   ├── manifest.json            # Punto d'ingresso: versione + elenco dei file
-│   ├── config.json              # Info comune, branding white-label, base_url media, share_url
+│   ├── config.json              # Info comune, branding (colori e logo), base_url media, share_url
 │   ├── monuments.json           # Punti di interesse (POI) → sezioni Tappe / Tour 360°
 │   ├── itineraries.json         # Itinerari turistici sulla mappa → sezione Itinerario
 │   ├── quizzes.json             # Quiz → sezione Quiz
@@ -41,9 +46,9 @@ aggiungere un comune si **clona** una sottocartella esistente e se ne adattano i
 ```
 
 > **Ogni `Comune di <Nome>/` è autonoma e clonabile:** contiene tutti i JSON, i media e il
-> validatore. In fase di build si punta alla sottocartella del comune desiderato. Quando un
-> comune va in produzione, la sua cartella può essere estratta in un repo dedicato
-> (es. `niscemi-heritage`) aggiornando solo `media.base_url`.
+> validatore. L'app la raggiunge tramite il `manifest_url` indicato nel catalogo. Se un
+> comune viene spostato su un altro host o repo, si aggiornano solo il suo `manifest_url`
+> nel catalogo e il suo `media.base_url`.
 
 > **Config mappa condivisa:** oltre alle cartelle comune esiste un file globale
 > `map.config.json` (nella radice di questo repo) con provider e chiave della mappa Carto,
@@ -53,6 +58,72 @@ aggiungere un comune si **clona** una sottocartella esistente e se ne adattano i
 > **Landing page e QR:** la pagina "scarica l'app" di ogni comune **non** sta in questo
 > repo ma nel repo dedicato `heritage-pages` (GitHub Pages). Ogni `config.json` la
 > richiama via `app.share_url`. Vedi *Landing page e QR code*.
+
+---
+
+## Catalogo dei comuni (`catalog.json`)
+
+L'app è unica: all'avvio scarica il catalogo da un URL fisso, impostato nella build:
+
+```
+https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/catalog.json
+```
+
+```json
+{
+  "schema_version": "1.0",
+  "comuni": [
+    {
+      "id": "niscemi",
+      "name": "Niscemi",
+      "province": "CL",
+      "region": "Sicilia",
+      "manifest_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/manifest.json",
+      "center": { "lat": 37.1469, "lon": 14.3897 },
+      "radius_km": 10,
+      "logo_url": "https://…/Comune%20di%20Niscemi/media/branding/logo.png",
+      "cover_url": "https://…/Comune%20di%20Niscemi/media/branding/splash.jpg",
+      "status": "published"
+    }
+  ]
+}
+```
+
+| Campo | Tipo | Obbl. | Note |
+|---|---|---|---|
+| `id` | string | sì | Slug del comune: uguale a `comune_id` del suo `manifest.json`. Non cambiarlo mai: è salvato sui dispositivi come comune scelto ed è usato nei link diretti. |
+| `name` | string | sì | Nome mostrato nell'elenco dei comuni. |
+| `province`, `region` | string | no | Mostrati sotto il nome e usati dalla ricerca. |
+| `manifest_url` | string | sì | URL assoluto (https) del `manifest.json` del comune. |
+| `center` | `{lat, lon}` | sì | Centro del territorio comunale, per la scelta automatica in base alla posizione. |
+| `radius_km` | number | sì | Raggio (km) attorno a `center` entro cui l'utente è considerato "nel comune". |
+| `logo_url`, `cover_url` | string | no | URL assoluti di logo e immagine di copertina per l'elenco. |
+| `status` | string | sì | `published` = visibile a tutti; `preview` = visibile solo nelle build interne (preview/development), per provare un comune prima di renderlo pubblico. |
+
+**Comportamento dell'app:**
+
+1. **Primo avvio:** mostra l'elenco dei comuni (con ricerca). Se l'utente concede la
+   posizione e si trova entro `radius_km` da un `center`, il comune viene aperto in
+   automatico.
+2. **Avvii successivi:** riapre l'ultimo comune. Se la posizione è già autorizzata e
+   l'utente si trova in un altro comune del catalogo, l'app passa a quello e lo segnala con
+   un avviso (con la possibilità di tornare indietro). Se più comuni contengono la
+   posizione, vince il centro più vicino.
+3. **Cambio manuale:** sempre possibile dalla Home e dalla sezione Info.
+4. **Offline:** il catalogo e i contenuti restano in cache; al primo avvio senza rete
+   l'app mostra l'errore con "Riprova".
+
+Per togliere un comune dall'app basta rimuoverlo dal catalogo (o riportarlo a `preview`):
+chi lo aveva scelto torna all'elenco.
+
+Prima di ogni push esegui, **nella radice**:
+
+```
+python3 validate_catalog.py
+```
+
+Controlla campi e id, che ogni `manifest_url` di questo repo esista e che il suo
+`comune_id` coincida con l'`id` del catalogo. Lo lancia anche la GitHub Action.
 
 ---
 
@@ -125,7 +196,14 @@ restano autonome: la chiave non è duplicata al loro interno.
 
 Per ora **non** si usa un QR per monumento: ogni comune ha **un solo QR** (da stampare su
 cartellonistica, brochure, ecc.) che punta a una **landing page** con i pulsanti per
-scaricare l'app da App Store e Google Play.
+scaricare l'app **Heritage** da App Store e Google Play (gli stessi link per tutti i comuni).
+La landing può anche offrire un pulsante "Apri nell'app" con il link diretto al comune:
+
+```
+heritage://comune/<id>        # es. heritage://comune/niscemi
+```
+
+che apre l'app già installata direttamente sul comune (`<id>` è quello del catalogo).
 
 Le landing page sono servite da **GitHub Pages** sul repo dedicato
 [`heritage-pages`](https://github.com/Magnetico-Associazione-Culturale/heritage-pages),
@@ -176,9 +254,9 @@ l'URL da codificare nel QR: un'unica fonte di verità per entrambi.
 
 ## config.json
 
-Contiene le info del comune, il branding dell'app (white-label) e il `base_url` dei media.
+Contiene le info del comune, il suo branding (colori e logo) e il `base_url` dei media.
 `comune.map_center` + `default_zoom` definiscono dove **centrare** la mappa all'avvio.
-`app.theme` contiene i colori e il logo per personalizzare l'aspetto della build.
+`app.theme` contiene i colori e il logo: l'app li applica quando l'utente apre questo comune.
 `app.share_url` è il link condiviso dal pulsante "Condividi l'app": punta alla landing page
 "scarica l'app" del comune, la stessa del QR unico (vedi *Landing page e QR code*).
 `map.config_url` **richiama** il file mappa globale condiviso: provider e chiave (Carto)
@@ -383,7 +461,7 @@ traducibili (**errore**), e segnala i testi non ancora tradotti (**avviso**).
 ## Checklist per un nuovo comune
 
 1. **Clona** una sottocartella esistente (es. `Comune di Bugliano/`) e rinominala `Comune di <Nome>/`.
-2. In `config.json`: aggiorna `comune`, `app.display_name`, i colori, **`media.base_url`** (deve puntare al repo/host del nuovo comune) e **`app.share_url`** (`…/heritage-pages/<Nome>/`, iniziale maiuscola).
+2. In `config.json`: aggiorna `comune` (compreso `map_center`), `app.display_name`, i colori, **`media.base_url`** (deve puntare al repo/host del nuovo comune) e **`app.share_url`** (`…/heritage-pages/<Nome>/`, iniziale maiuscola).
 3. In `manifest.json`: aggiorna `comune_id` e `content_version`.
 4. Compila `monuments.json`, `itineraries.json`, `quizzes.json`.
 5. Carica i media nelle cartelle `media/...` con gli stessi path indicati nei JSON.
@@ -392,10 +470,14 @@ traducibili (**errore**), e segnala i testi non ancora tradotti (**avviso**).
 6. **Mappa:** verifica che `config.json` abbia `map.config_url` (lo stesso per tutti i
    comuni). Non duplicare la chiave: provider e chiave sono globali in `map.config.json`
    (radice di questo repo).
-7. In build → indica la sottocartella del comune.
-8. Pubblica sugli store sotto *Magnetico Associazione Culturale*.
-9. **Landing page:** nel repo `heritage-pages` clona `Niscemi/` in `<Nome>/`, adatta testi,
-   colori (gli stessi di `app.theme`) e link agli store dell'app appena pubblicata.
+7. **Catalogo:** aggiungi il comune a `catalog.json` con `status: "preview"` (stesso `id`
+   di `comune_id`, `center` e `radius_km` del territorio) ed esegui
+   `python3 validate_catalog.py` nella radice. Provalo con una build preview dell'app.
+8. **Pubblicazione:** quando è pronto porta `status` a `"published"`: il comune compare
+   nell'app Heritage per tutti, **senza** nuove pubblicazioni sugli store.
+9. **Landing page:** nel repo `heritage-pages` clona `Niscemi/` in `<Nome>/`, adatta testi e
+   colori (gli stessi di `app.theme`); i link agli store sono quelli dell'app Heritage, il
+   pulsante "Apri nell'app" usa `heritage://comune/<id>`.
 10. **QR:** genera il QR da `app.share_url`, aprilo da smartphone e verifica che la pagina
     si carichi prima di mandarlo in stampa.
 

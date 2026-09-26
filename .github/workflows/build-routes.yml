@@ -7,6 +7,8 @@ on:
       - "Comune di */itineraries.json"
       - "Comune di */monuments.json"
       - "build_routes.py"
+      - "catalog.json"
+      - "Comune di */manifest.json"
   workflow_dispatch:
 
 permissions:
@@ -26,6 +28,9 @@ jobs:
 
       - name: Calcola i percorsi
         run: python3 build_routes.py
+
+      - name: Valida il catalogo dei comuni
+        run: python3 validate_catalog.py
 
       - name: Valida i contenuti
         run: |
