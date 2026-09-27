@@ -1,0 +1,77 @@
+{
+  "categories": {
+    "mangiare": {
+      "label": "Eat"
+    },
+    "dormire": {
+      "label": "Stay"
+    },
+    "sport": {
+      "label": "Sport & experiences"
+    },
+    "farmacie": {
+      "label": "Pharmacies"
+    }
+  },
+  "businesses": {
+    "trattoria-da-mario": {
+      "name": "Trattoria da Mario",
+      "short_description": "Traditional Niscemi cooking.",
+      "description": "Traditional dishes made with local produce: homemade pasta, grilled meat and home-made desserts. (Sample listing)",
+      "hours_note": "Closed on Monday evenings.",
+      "tags": [
+        "local cuisine",
+        "vegetarian"
+      ]
+    },
+    "pizzeria-la-piazza": {
+      "short_description": "Wood-fired pizza a short walk from the square.",
+      "description": "Slow-rising dough and a wood-fired oven, with outdoor tables in the warm season. (Sample listing)",
+      "hours_note": "Closed on Mondays.",
+      "tags": [
+        "wood-fired oven",
+        "gluten free",
+        "takeaway"
+      ]
+    },
+    "bar-del-corso": {
+      "short_description": "Breakfast, granita and local pastries.",
+      "description": "Granita with brioche, cannoli and almond pastries. A perfect break while visiting the old town. (Sample listing)",
+      "tags": [
+        "granita",
+        "local pastries",
+        "breakfast"
+      ]
+    },
+    "bb-la-sughereta": {
+      "short_description": "Cosy rooms in a house in the old town.",
+      "description": "Four rooms with private bathroom, breakfast with local produce and a panoramic terrace over the Gela plain. (Sample listing)",
+      "hours_note": "Check-in 2pm to 8pm, check-out by 10:30am.",
+      "tags": [
+        "breakfast included",
+        "terrace",
+        "wi-fi"
+      ]
+    },
+    "escursioni-sughereta": {
+      "name": "Sughereta Excursions",
+      "short_description": "Walks and bike rides in the Sughereta nature reserve.",
+      "description": "Guided walks and mountain-bike rides in the nature reserve, with bike rental available. Booking required. (Sample listing)",
+      "hours_note": "Weekdays by appointment.",
+      "tags": [
+        "nature",
+        "bike",
+        "families"
+      ]
+    },
+    "farmacia-centrale": {
+      "name": "Central Pharmacy",
+      "short_description": "Pharmacy in the old town.",
+      "description": "Medicines, health products and blood pressure checks. See the rota for night openings. (Sample listing)",
+      "hours_note": "Holiday and night shifts follow the town rota.",
+      "tags": [
+        "blood pressure check"
+      ]
+    }
+  }
+}

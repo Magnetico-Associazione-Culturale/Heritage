@@ -3,7 +3,9 @@
 Questo repo contiene i contenuti dell'app turistica **Heritage**: un'**unica app** sugli
 store dentro la quale l'utente sceglie il comune da visitare (da un elenco oppure in
 automatico in base alla sua posizione). L'app ha 6 sezioni principali — **Home, Itinerario,
-Tappe, Tour (360°), Quiz, Info** — e legge i contenuti da file JSON + media associati.
+Tappe, Tour (360°), Vivi, Info** — e legge i contenuti da file JSON + media associati. I
+**quiz** si aprono dalla Home ("Mettiti alla prova") e dalla scheda del monumento a cui sono
+legati.
 Aggiornando i contenuti, l'app si aggiorna da remoto senza ripubblicare sugli store.
 
 Ogni comune ha la propria **sottocartella** `Comune di <Nome>/`, completa e autonoma, ed è
@@ -27,7 +29,8 @@ lo mostra senza bisogno di una nuova pubblicazione.
 │   ├── config.json              # Info comune, branding (colori e logo), base_url media, share_url
 │   ├── monuments.json           # Punti di interesse (POI) → sezioni Tappe / Tour 360°
 │   ├── itineraries.json         # Itinerari turistici sulla mappa → sezione Itinerario
-│   ├── quizzes.json             # Quiz → sezione Quiz
+│   ├── quizzes.json             # Quiz → card "Mettiti alla prova" e schede monumento
+│   ├── businesses.json          # (facoltativo) Attività del territorio → sezione Vivi
 │   ├── validate.py              # Validatore contenuti (eseguire dentro la cartella)
 │   ├── i18n/                    # Traduzioni (opzionali), una cartella per lingua
 │   │   └── en/                  # Stessi nomi file, solo i testi, per id
@@ -35,7 +38,8 @@ lo mostra senza bisogno di una nuova pubblicazione.
 │       ├── images/
 │       │   ├── flat/            # Foto standard
 │       │   ├── 360/             # Immagini equirettangolari per tour 360°
-│       │   └── itineraries/     # Copertine degli itinerari
+│       │   ├── itineraries/     # Copertine degli itinerari
+│       │   └── businesses/      # Foto delle attività
 │       ├── audio/
 │       │   ├── it/              # Audioguide in italiano
 │       │   └── en/              # Audioguide in inglese (se presenti)
@@ -247,7 +251,7 @@ l'URL da codificare nel QR: un'unica fonte di verità per entrambi.
 | `comune_id` | string | Slug del comune (minuscolo, senza spazi). |
 | `default_language` | string | Lingua predefinita (`it`): è la lingua dei file base. |
 | `available_languages` | string[] | Lingue mostrate nel selettore dell'app. |
-| `files` | object | Nomi dei file di contenuto (così l'app sa cosa caricare). |
+| `files` | object | Nomi dei file di contenuto (così l'app sa cosa caricare): `config`, `monuments`, `itineraries`, `quizzes` e, *(da schema 1.2, facoltativo)* `businesses`. Senza `businesses` la sezione **Vivi** non compare. |
 | `translations` | object | *(da schema 1.1)* Per ogni lingua diversa dalla predefinita, i file di traduzione. Vedi *Traduzioni*. |
 
 ---
@@ -355,7 +359,9 @@ di modificare di nuovo, perché l'Action aggiunge un suo commit.
 ## quizzes.json
 
 Array di quiz. `monument_id` può essere `null` (quiz generale) o l'id di un monumento
-(quiz contestuale alla sua scheda).
+(quiz contestuale alla sua scheda). Nell'app il primo quiz generale si apre dalla card
+**"Mettiti alla prova"** della Home; un quiz con `monument_id` compare come pulsante
+**"Fai il quiz"** nella scheda di quel monumento.
 
 ```json
 {
@@ -379,6 +385,106 @@ Array di quiz. `monument_id` può essere `null` (quiz generale) o l'id di un mon
 
 ---
 
+## businesses.json (sezione Vivi)
+
+*Facoltativo, da schema 1.2.* Le **attività del territorio** — dove mangiare, dormire, cosa
+fare e i servizi utili — mostrate nella sezione **Vivi** dell'app e, nella scheda di un
+monumento, nel riquadro *"Da scoprire qui vicino"*. Il file si registra nel manifest:
+
+```json
+"files": { "...": "...", "businesses": "businesses.json" }
+```
+
+Se il manifest non elenca `businesses`, o nessuna attività è attiva, la sezione Vivi non
+compare. Il file è un **oggetto** con due array:
+
+```json
+{
+  "categories": [
+    { "id": "mangiare", "group": "vivi", "label": "Mangiare", "icon": "utensils" },
+    { "id": "farmacie", "group": "servizi", "label": "Farmacie", "icon": "cross" }
+  ],
+  "businesses": [
+    {
+      "id": "trattoria-da-mario",
+      "name": "Trattoria da Mario",
+      "category": "mangiare",
+      "subcategory": "trattoria",
+      "short_description": "Cucina tradizionale niscemese.",
+      "description": "Testo lungo per la scheda.",
+      "lat": 37.1470,
+      "lon": 14.3890,
+      "address": "Via Roma 10, Niscemi",
+      "contacts": {
+        "phone": "+39 0933 000000",
+        "whatsapp": "+39 333 0000000",
+        "email": "info@example.it",
+        "website": "https://example.it",
+        "instagram": "trattoriadamario",
+        "booking_url": null
+      },
+      "opening_hours": [
+        { "days": ["mon", "tue", "wed", "thu", "fri"], "open": "12:00", "close": "15:00" },
+        { "days": ["fri", "sat", "sun"], "open": "19:30", "close": "23:30" }
+      ],
+      "hours_note": "Chiuso il lunedì sera.",
+      "price_range": 2,
+      "tags": ["cucina tipica", "vegetariano"],
+      "languages": ["it", "en"],
+      "accessible": true,
+      "images": [
+        { "role": "thumbnail", "path": "media/images/businesses/trattoria-da-mario.jpg", "alt": "Sala interna" }
+      ],
+      "near_monuments": ["chiesa-madre-santa-maria-itria"],
+      "active": true,
+      "updated_at": "2026-09-28"
+    }
+  ]
+}
+```
+
+### categories
+
+| Campo | Tipo | Obbl. | Note |
+|---|---|---|---|
+| `id` | string | sì | Slug univoco, referenziato da `businesses[].category`. |
+| `group` | string | sì | `vivi` (**Da vivere**: mangiare, dormire, esperienze…) o `servizi` (**Servizi utili**: farmacie, parcheggi…). I nomi dei gruppi sono tradotti nell'app; se c'è un solo gruppo il selettore non compare. |
+| `label` | string | sì | Nome della categoria nei filtri (traducibile). |
+| `icon` | string | no | Nome di un'icona [Lucide](https://lucide.dev/icons) in minuscolo con trattini (es. `utensils`, `bed`, `bike`, `cross`, `shopping-bag`). Un nome sconosciuto mostra un'icona generica. |
+
+### businesses
+
+| Campo | Tipo | Obbl. | Note |
+|---|---|---|---|
+| `id` | string | sì | Slug univoco. |
+| `name` | string | sì | Nome dell'attività. |
+| `category` | string | sì | `id` di una categoria esistente. |
+| `subcategory` | string | no | Testo libero mostrato sotto il nome (es. `trattoria`). |
+| `short_description` | string | consigliato | Una riga per l'elenco. |
+| `description` | string | no | Testo lungo per la scheda. |
+| `lat`, `lon` | number\|null | no | Coordinate: servono per la mappa, la distanza dall'utente e *Apri in mappe*. Entrambi numeri o entrambi `null`. |
+| `address` | string | consigliato | Indirizzo testuale. |
+| `contacts` | object | no | `phone`, `whatsapp` (numero con prefisso internazionale), `email`, `website` (https), `instagram` (nome utente o URL), `booking_url` (https). Ogni campo è facoltativo o `null`: l'app mostra il pulsante (*Chiama, WhatsApp, Email, Sito, Instagram, Prenota*) solo per i contatti presenti. |
+| `opening_hours` | object[] | no | Fasce orarie: `{ days, open, close }` con `days` tra `mon tue wed thu fri sat sun` e orari `HH:MM` (24 h). Più fasce per giorno sono ammesse (pranzo e cena). Se `close` è minore di `open` la fascia finisce **dopo mezzanotte** (es. `19:00`–`01:00`); se sono uguali vale **24 ore**. Un giorno senza fasce è mostrato come *Chiuso*. Senza orari non compare il badge *Aperto ora / Chiuso*. |
+| `hours_note` | string | no | Nota sugli orari (chiusure, stagionalità, turni). |
+| `price_range` | number\|null | no | `1`, `2` o `3` → €, €€, €€€. |
+| `tags` | string[] | no | Caratteristiche mostrate nella scheda (traducibili). |
+| `languages` | string[] | no | Lingue parlate, codici ISO (`it`, `en`, `fr`…): l'app mostra il nome della lingua. |
+| `accessible` | boolean\|null | no | Accessibilità per persone con disabilità motoria; `null` = non indicata. |
+| `images` | object[] | no | `{ role, path, alt }` come per i monumenti; `role: "thumbnail"` è la foto dell'elenco (altrimenti la prima). Path in `media/images/businesses/`. Senza immagini compare un segnaposto. |
+| `near_monuments` | string[] | no | `id` di monumenti vicini: l'attività compare nella loro scheda in *"Da scoprire qui vicino"* (massimo 5, prima quelle del gruppo `vivi`). |
+| `active` | boolean | no | `false` nasconde l'attività senza cancellarla (default `true`). |
+| `updated_at` | string | no | Data dell'ultimo controllo dei dati (`AAAA-MM-GG`), per la redazione. |
+
+**Comportamento dell'app:** il badge *Aperto ora / Chiuso* usa l'ora del dispositivo; la
+distanza compare solo se l'utente ha già concesso la posizione; la mappa mostra le attività
+della categoria scelta sulla stessa basemap Carto degli itinerari. Voci incomplete (senza
+`id`, `name` o con `category` inesistente) vengono ignorate senza bloccare l'app, ma
+`validate.py` le segnala come errore.
+
+
+---
+
 ## Traduzioni (selettore lingua)
 
 I file base (`monuments.json`, ecc.) sono nella **lingua predefinita** e restano l'unica
@@ -394,7 +500,8 @@ registra nel manifest:
     "config": "i18n/en/config.json",
     "monuments": "i18n/en/monuments.json",
     "itineraries": "i18n/en/itineraries.json",
-    "quizzes": "i18n/en/quizzes.json"
+    "quizzes": "i18n/en/quizzes.json",
+    "businesses": "i18n/en/businesses.json"
   }
 }
 ```
@@ -409,6 +516,7 @@ Ogni file di traduzione è un **oggetto** (non un array) con chiave = `id` dell'
 | `monuments` | `name`, `short_description`, `description`, `address`, `tags`, `audio`, `images`, `history` |
 | `itineraries` | `name`, `short_name`, `description`, `stops` |
 | `quizzes` | `title`, `description`, `questions` |
+| `businesses` | `categories.<id>.label`; `businesses.<id>`: `name`, `short_description`, `description`, `hours_note`, `tags`, `images` |
 
 Gli elementi annidati senza `id` proprio usano un'altra chiave:
 
@@ -418,7 +526,23 @@ Gli elementi annidati senza `id` proprio usano un'altra chiave:
 | `history` | posizione nell'array (stesso ordine del file base) | `{ title, description }` |
 | `stops` | `monument_id` della tappa | `{ note }` |
 | `questions` | `id` della domanda | `{ text, options: { <id opzione>: "testo" }, explanation }` |
+| `categories` / `businesses` (in `businesses`) | `id` della categoria / dell'attività | `{ label }` / campi dell'attività; le sue `images` usano il `path` → `{ alt }` |
 | `audio` | — | oggetto **completo** che sostituisce quello base (`path` in `media/audio/<lingua>/`, `language: "<lingua>"`) |
+
+Il file `businesses` ha due sezioni, una per array:
+
+```json
+{
+  "categories": { "mangiare": { "label": "Eat" } },
+  "businesses": {
+    "trattoria-da-mario": {
+      "short_description": "Traditional Niscemi cooking.",
+      "tags": ["local cuisine", "vegetarian"],
+      "images": { "media/images/businesses/trattoria-da-mario.jpg": { "alt": "Dining room" } }
+    }
+  }
+}
+```
 
 ```json
 {
@@ -434,7 +558,8 @@ Gli elementi annidati senza `id` proprio usano un'altra chiave:
 
 **Non vanno mai tradotti** (restano nei file base): `id`, `lat`/`lon`, `category`,
 `difficulty`, `travel_mode`, `color`, `path`/`legs` degli itinerari, `correct` dei quiz,
-i path delle immagini. I valori enumerati (`category`, `difficulty`, …) e le etichette
+i path delle immagini; per le attività `category`, `group`, `icon`, `contacts`, `opening_hours`,
+`price_range`, `languages`, `accessible`, `near_monuments`, `active`. I valori enumerati (`category`, `difficulty`, …) e le etichette
 dell'interfaccia (Home, Tappe, Tour…) sono tradotti **nell'app**, non nei contenuti.
 
 ### Comportamento dell'app
@@ -463,7 +588,8 @@ traducibili (**errore**), e segnala i testi non ancora tradotti (**avviso**).
 1. **Clona** una sottocartella esistente (es. `Comune di Bugliano/`) e rinominala `Comune di <Nome>/`.
 2. In `config.json`: aggiorna `comune` (compreso `map_center`), `app.display_name`, i colori, **`media.base_url`** (deve puntare al repo/host del nuovo comune) e **`app.share_url`** (`…/heritage-pages/<Nome>/`, iniziale maiuscola).
 3. In `manifest.json`: aggiorna `comune_id` e `content_version`.
-4. Compila `monuments.json`, `itineraries.json`, `quizzes.json`.
+4. Compila `monuments.json`, `itineraries.json`, `quizzes.json` e, se vuoi la sezione Vivi,
+   `businesses.json` (registrandolo in `files.businesses` del manifest).
 5. Carica i media nelle cartelle `media/...` con gli stessi path indicati nei JSON.
    *(Opzionale)* aggiungi le traduzioni in `i18n/<lingua>/` e registrale nel manifest
    (vedi *Traduzioni*).
@@ -485,8 +611,10 @@ traducibili (**errore**), e segnala i testi non ancora tradotti (**avviso**).
 
 Prima di pubblicare, **entra nella cartella del comune** ed esegui `python3 validate.py`:
 verifica che ogni `path` esista davvero e che ogni `monument_id` referenziato in
-itinerari/quiz corrisponda a un id presente in `monuments.json`. Un piccolo script di
-validazione evita schermate vuote nell'app.
+itinerari/quiz corrisponda a un id presente in `monuments.json`. Per `businesses.json`
+controlla anche che ogni `category` esista, che i `near_monuments` siano monumenti esistenti,
+il formato degli orari (`days`, `HH:MM`), `price_range`, i link https e le immagini. Un
+piccolo script di validazione evita schermate vuote nell'app.
 
 ```
 cd "Comune di Niscemi"

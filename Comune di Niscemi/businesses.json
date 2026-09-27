@@ -1,0 +1,357 @@
+{
+  "categories": [
+    {
+      "id": "mangiare",
+      "group": "vivi",
+      "label": "Mangiare",
+      "icon": "utensils"
+    },
+    {
+      "id": "dormire",
+      "group": "vivi",
+      "label": "Dormire",
+      "icon": "bed"
+    },
+    {
+      "id": "sport",
+      "group": "vivi",
+      "label": "Sport ed esperienze",
+      "icon": "bike"
+    },
+    {
+      "id": "farmacie",
+      "group": "servizi",
+      "label": "Farmacie",
+      "icon": "cross"
+    }
+  ],
+  "businesses": [
+    {
+      "id": "trattoria-da-mario",
+      "name": "Trattoria da Mario",
+      "category": "mangiare",
+      "subcategory": "trattoria",
+      "short_description": "Cucina tradizionale niscemese.",
+      "description": "Piatti della tradizione preparati con prodotti del territorio: pasta fatta in casa, carni alla brace e dolci della casa. (Attività di esempio)",
+      "lat": 37.1472,
+      "lon": 14.3891,
+      "address": "Via Roma 10, Niscemi",
+      "contacts": {
+        "phone": "+39 0933 000000",
+        "whatsapp": "+39 333 0000000",
+        "email": "info@example.it",
+        "website": "https://example.it",
+        "instagram": "trattoriadamario",
+        "booking_url": null
+      },
+      "opening_hours": [
+        {
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "open": "12:00",
+          "close": "15:00"
+        },
+        {
+          "days": [
+            "fri",
+            "sat",
+            "sun"
+          ],
+          "open": "19:30",
+          "close": "23:30"
+        }
+      ],
+      "hours_note": "Chiuso il lunedì sera.",
+      "price_range": 2,
+      "tags": [
+        "cucina tipica",
+        "vegetariano"
+      ],
+      "languages": [
+        "it",
+        "en"
+      ],
+      "accessible": true,
+      "images": [],
+      "near_monuments": [
+        "chiesa-madre-santa-maria-itria",
+        "piazza-vittorio-emanuele"
+      ],
+      "active": true,
+      "updated_at": "2026-09-28"
+    },
+    {
+      "id": "pizzeria-la-piazza",
+      "name": "Pizzeria La Piazza",
+      "category": "mangiare",
+      "subcategory": "pizzeria",
+      "short_description": "Pizza al forno a legna a due passi dalla piazza.",
+      "description": "Impasti a lunga lievitazione e forno a legna, con tavoli all'aperto nella bella stagione. (Attività di esempio)",
+      "lat": 37.1467,
+      "lon": 14.3905,
+      "address": "Corso Vittorio Emanuele 25, Niscemi",
+      "contacts": {
+        "phone": "+39 0933 000001",
+        "whatsapp": null,
+        "email": null,
+        "website": null,
+        "instagram": "pizzerialapiazza",
+        "booking_url": null
+      },
+      "opening_hours": [
+        {
+          "days": [
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat",
+            "sun"
+          ],
+          "open": "19:00",
+          "close": "00:30"
+        }
+      ],
+      "hours_note": "Chiuso il lunedì.",
+      "price_range": 1,
+      "tags": [
+        "forno a legna",
+        "senza glutine",
+        "asporto"
+      ],
+      "languages": [
+        "it"
+      ],
+      "accessible": true,
+      "images": [],
+      "near_monuments": [
+        "piazza-vittorio-emanuele",
+        "palazzo-comunale"
+      ],
+      "active": true,
+      "updated_at": "2026-09-28"
+    },
+    {
+      "id": "bar-del-corso",
+      "name": "Bar del Corso",
+      "category": "mangiare",
+      "subcategory": "bar e pasticceria",
+      "short_description": "Colazioni, granite e dolci tipici.",
+      "description": "Granita con brioche, cannoli e paste di mandorla. Ideale per una pausa durante la visita al centro storico. (Attività di esempio)",
+      "lat": 37.1463,
+      "lon": 14.3899,
+      "address": "Corso Vittorio Emanuele 8, Niscemi",
+      "contacts": {
+        "phone": "+39 0933 000002",
+        "whatsapp": null,
+        "email": null,
+        "website": null,
+        "instagram": null,
+        "booking_url": null
+      },
+      "opening_hours": [
+        {
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat",
+            "sun"
+          ],
+          "open": "06:30",
+          "close": "21:00"
+        }
+      ],
+      "hours_note": null,
+      "price_range": 1,
+      "tags": [
+        "granita",
+        "dolci tipici",
+        "colazione"
+      ],
+      "languages": [
+        "it"
+      ],
+      "accessible": false,
+      "images": [],
+      "near_monuments": [
+        "piazza-vittorio-emanuele",
+        "chiesa-madre-santa-maria-itria"
+      ],
+      "active": true,
+      "updated_at": "2026-09-28"
+    },
+    {
+      "id": "bb-la-sughereta",
+      "name": "B&B La Sughereta",
+      "category": "dormire",
+      "subcategory": "bed & breakfast",
+      "short_description": "Camere accoglienti in una casa del centro storico.",
+      "description": "Quattro camere con bagno privato, colazione con prodotti locali e terrazza panoramica sulla piana di Gela. (Attività di esempio)",
+      "lat": 37.1478,
+      "lon": 14.3884,
+      "address": "Via Garibaldi 42, Niscemi",
+      "contacts": {
+        "phone": "+39 333 0000001",
+        "whatsapp": "+39 333 0000001",
+        "email": "prenotazioni@example.it",
+        "website": "https://example.it",
+        "instagram": null,
+        "booking_url": "https://example.it/prenota"
+      },
+      "opening_hours": [
+        {
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat",
+            "sun"
+          ],
+          "open": "08:00",
+          "close": "08:00"
+        }
+      ],
+      "hours_note": "Check-in dalle 14:00 alle 20:00, check-out entro le 10:30.",
+      "price_range": 2,
+      "tags": [
+        "colazione inclusa",
+        "terrazza",
+        "wi-fi"
+      ],
+      "languages": [
+        "it",
+        "en",
+        "fr"
+      ],
+      "accessible": false,
+      "images": [],
+      "near_monuments": [
+        "chiesa-madre-santa-maria-itria"
+      ],
+      "active": true,
+      "updated_at": "2026-09-28"
+    },
+    {
+      "id": "escursioni-sughereta",
+      "name": "Escursioni nella Sughereta",
+      "category": "sport",
+      "subcategory": "escursioni guidate",
+      "short_description": "Passeggiate e giri in bici nella Riserva della Sughereta.",
+      "description": "Uscite guidate a piedi e in mountain bike nella riserva naturale, con noleggio bici disponibile. Su prenotazione. (Attività di esempio)",
+      "lat": 37.153,
+      "lon": 14.382,
+      "address": "Contrada Santuario, Niscemi",
+      "contacts": {
+        "phone": null,
+        "whatsapp": "+39 333 0000002",
+        "email": "escursioni@example.it",
+        "website": null,
+        "instagram": "sugheretaexperience",
+        "booking_url": "https://example.it/escursioni"
+      },
+      "opening_hours": [
+        {
+          "days": [
+            "sat",
+            "sun"
+          ],
+          "open": "08:30",
+          "close": "13:00"
+        }
+      ],
+      "hours_note": "In settimana su prenotazione.",
+      "price_range": 2,
+      "tags": [
+        "natura",
+        "bici",
+        "famiglie"
+      ],
+      "languages": [
+        "it",
+        "en"
+      ],
+      "accessible": false,
+      "images": [],
+      "near_monuments": [
+        "santuario-madonna-del-bosco"
+      ],
+      "active": true,
+      "updated_at": "2026-09-28"
+    },
+    {
+      "id": "farmacia-centrale",
+      "name": "Farmacia Centrale",
+      "category": "farmacie",
+      "subcategory": "farmacia",
+      "short_description": "Farmacia nel centro storico.",
+      "description": "Farmaci, parafarmaci e misurazione della pressione. Consulta il calendario dei turni per le aperture notturne. (Attività di esempio)",
+      "lat": 37.1466,
+      "lon": 14.3894,
+      "address": "Piazza Vittorio Emanuele 3, Niscemi",
+      "contacts": {
+        "phone": "+39 0933 000003",
+        "whatsapp": null,
+        "email": null,
+        "website": null,
+        "instagram": null,
+        "booking_url": null
+      },
+      "opening_hours": [
+        {
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "open": "08:30",
+          "close": "13:00"
+        },
+        {
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri"
+          ],
+          "open": "16:30",
+          "close": "20:00"
+        },
+        {
+          "days": [
+            "sat"
+          ],
+          "open": "08:30",
+          "close": "13:00"
+        }
+      ],
+      "hours_note": "Turni festivi e notturni secondo il calendario comunale.",
+      "price_range": null,
+      "tags": [
+        "misurazione pressione"
+      ],
+      "languages": [
+        "it"
+      ],
+      "accessible": true,
+      "images": [],
+      "near_monuments": [
+        "piazza-vittorio-emanuele"
+      ],
+      "active": true,
+      "updated_at": "2026-09-28"
+    }
+  ]
+}

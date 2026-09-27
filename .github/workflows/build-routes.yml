@@ -9,6 +9,9 @@ on:
       - "build_routes.py"
       - "catalog.json"
       - "Comune di */manifest.json"
+      - "Comune di */businesses.json"
+      - "Comune di */i18n/**"
+      - "Comune di */validate.py"
   workflow_dispatch:
 
 permissions:

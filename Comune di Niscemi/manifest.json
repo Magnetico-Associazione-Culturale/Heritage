@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.1",
-  "content_version": "2026-09-26.2",
+  "schema_version": "1.2",
+  "content_version": "2026-09-28",
   "comune_id": "niscemi",
   "default_language": "it",
   "available_languages": ["it", "en"],
@@ -8,14 +8,16 @@
     "config": "config.json",
     "monuments": "monuments.json",
     "itineraries": "itineraries.json",
-    "quizzes": "quizzes.json"
+    "quizzes": "quizzes.json",
+    "businesses": "businesses.json"
   },
   "translations": {
     "en": {
       "config": "i18n/en/config.json",
       "monuments": "i18n/en/monuments.json",
       "itineraries": "i18n/en/itineraries.json",
-      "quizzes": "i18n/en/quizzes.json"
+      "quizzes": "i18n/en/quizzes.json",
+      "businesses": "i18n/en/businesses.json"
     }
   }
 }

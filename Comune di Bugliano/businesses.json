@@ -1,0 +1,154 @@
+{
+  "categories": [
+    {
+      "id": "mangiare",
+      "group": "vivi",
+      "label": "Mangiare",
+      "icon": "utensils"
+    },
+    {
+      "id": "dormire",
+      "group": "vivi",
+      "label": "Dormire",
+      "icon": "bed"
+    },
+    {
+      "id": "farmacie",
+      "group": "servizi",
+      "label": "Farmacie",
+      "icon": "cross"
+    }
+  ],
+  "businesses": [
+    {
+      "id": "osteria-san-giovanni",
+      "name": "Osteria San Giovanni",
+      "category": "mangiare",
+      "subcategory": "osteria",
+      "short_description": "Cucina di casa accanto alla chiesa.",
+      "description": "Attività di esempio del comune modello.",
+      "lat": 37.6524,
+      "lon": 14.6405,
+      "address": "Via San Giovanni 1, Bugliano",
+      "contacts": {
+        "phone": "+39 000 0000000",
+        "whatsapp": null,
+        "email": "info@example.it",
+        "website": null,
+        "instagram": null,
+        "booking_url": null
+      },
+      "opening_hours": [
+        {
+          "days": [
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat",
+            "sun"
+          ],
+          "open": "12:30",
+          "close": "15:00"
+        }
+      ],
+      "hours_note": null,
+      "price_range": 2,
+      "tags": [
+        "cucina tipica"
+      ],
+      "languages": [
+        "it"
+      ],
+      "accessible": true,
+      "images": [],
+      "near_monuments": [
+        "chiesa-san-giovanni"
+      ],
+      "active": true,
+      "updated_at": "2026-09-28"
+    },
+    {
+      "id": "casa-vacanze-il-borgo",
+      "name": "Casa vacanze Il Borgo",
+      "category": "dormire",
+      "subcategory": "casa vacanze",
+      "short_description": "Appartamento nel borgo.",
+      "description": "Attività di esempio del comune modello.",
+      "lat": 37.6527,
+      "lon": 14.6412,
+      "address": "Via del Borgo 5, Bugliano",
+      "contacts": {
+        "phone": null,
+        "whatsapp": "+39 000 0000001",
+        "email": null,
+        "website": "https://example.it",
+        "instagram": null,
+        "booking_url": "https://example.it/prenota"
+      },
+      "opening_hours": [],
+      "hours_note": null,
+      "price_range": 1,
+      "tags": [
+        "cucina attrezzata"
+      ],
+      "languages": [
+        "it",
+        "en"
+      ],
+      "accessible": null,
+      "images": [],
+      "near_monuments": [
+        "palazzo-comunale"
+      ],
+      "active": true,
+      "updated_at": "2026-09-28"
+    },
+    {
+      "id": "farmacia-bugliano",
+      "name": "Farmacia di Bugliano",
+      "category": "farmacie",
+      "subcategory": "farmacia",
+      "short_description": "Farmacia del paese.",
+      "description": "Attività di esempio del comune modello.",
+      "lat": 37.6521,
+      "lon": 14.641,
+      "address": "Piazza Municipio 2, Bugliano",
+      "contacts": {
+        "phone": "+39 000 0000002",
+        "whatsapp": null,
+        "email": null,
+        "website": null,
+        "instagram": null,
+        "booking_url": null
+      },
+      "opening_hours": [
+        {
+          "days": [
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat"
+          ],
+          "open": "09:00",
+          "close": "13:00"
+        }
+      ],
+      "hours_note": null,
+      "price_range": null,
+      "tags": [],
+      "languages": [
+        "it"
+      ],
+      "accessible": null,
+      "images": [],
+      "near_monuments": [
+        "palazzo-comunale"
+      ],
+      "active": true,
+      "updated_at": "2026-09-28"
+    }
+  ]
+}
