@@ -28,6 +28,7 @@ lo mostra senza bisogno di una nuova pubblicazione.
 ├── catalog.json                 # Catalogo dei comuni mostrati nell'app (punto d'ingresso)
 ├── validate_catalog.py          # Validatore del catalogo (eseguire nella radice)
 ├── map.config.json              # Config mappa globale condivisa (provider + chiave Carto)
+├── privacy/                     # Informativa privacy dell'app, un file per lingua (it.json, en.json, …)
 │
 ├── Comune di Bugliano/          # Istanza comune (contenuti template di riferimento)
 │   ├── manifest.json            # Punto d'ingresso: versione + elenco dei file
@@ -132,7 +133,46 @@ python3 validate_catalog.py
 ```
 
 Controlla campi e id, che ogni `manifest_url` di questo repo esista e che il suo
-`comune_id` coincida con l'`id` del catalogo. Lo lancia anche la GitHub Action.
+`comune_id` coincida con l'`id` del catalogo, e verifica i file dell'informativa privacy.
+Lo lancia anche la GitHub Action.
+
+---
+
+## Informativa privacy (`privacy/`)
+
+L'informativa è **unica per tutta l'app** (non per comune): l'app la mostra dal benvenuto e
+dalle Informazioni. Sta nella cartella `privacy/`, **un file per lingua**, elencati nel
+blocco `privacy` di `catalog.json`:
+
+```json
+"privacy": {
+  "default_language": "it",
+  "files": {
+    "it": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/privacy/it.json",
+    "en": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/privacy/en.json"
+  }
+}
+```
+
+L'app apre il file della lingua scelta dall'utente; se manca usa l'inglese, poi
+`default_language`. Lo tiene in cache, così resta leggibile anche offline.
+
+Struttura di `privacy/<lingua>.json`:
+
+| Campo | Tipo | Obbl. | Note |
+|---|---|---|---|
+| `language` | string | sì | Codice della lingua, uguale alla chiave in `privacy.files`. |
+| `title` | string | sì | Titolo della schermata (es. "Privacy e trattamento dati"). |
+| `updated` | string | sì | Data dell'ultimo aggiornamento, `AAAA-MM-GG`: l'app la formatta nella lingua dell'utente. |
+| `summary` | string | sì | Riassunto in evidenza in cima (una o due frasi). |
+| `sections` | array | sì | Paragrafi `{ "title", "body" }`, nell'ordine in cui vengono mostrati. |
+
+**Aggiungere una lingua:** copia `privacy/en.json` in `privacy/<lingua>.json`, traducilo
+(`language` compreso), aggiungilo a `privacy.files` ed esegui `python3 validate_catalog.py`.
+**Modificare l'informativa:** aggiorna il testo in **tutte** le lingue e la data `updated`
+(il validatore avvisa se numero di sezioni o date non coincidono tra le lingue).
+Il testo descrive cosa fa l'app con i dati: se l'app cambia (es. statistiche d'uso o
+account), l'informativa va aggiornata prima della pubblicazione.
 
 ---
 

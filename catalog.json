@@ -1,6 +1,14 @@
 {
   "schema_version": "1.0",
   "comment": "Elenco dei comuni mostrati nell'app unica Heritage. L'app scarica questo file all'avvio: per aggiungere un comune basta aggiungere una voce qui, senza ripubblicare. status 'preview' = visibile solo nelle build interne (preview/development).",
+  "privacy": {
+    "comment": "Informativa privacy dell'app, uguale per tutti i comuni: un file per lingua in privacy/. L'app apre quello della lingua scelta, altrimenti l'inglese, altrimenti default_language.",
+    "default_language": "it",
+    "files": {
+      "it": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/privacy/it.json",
+      "en": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/privacy/en.json"
+    }
+  },
   "comuni": [
     {
       "id": "niscemi",

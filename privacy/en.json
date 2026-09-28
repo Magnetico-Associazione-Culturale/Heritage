@@ -1,0 +1,36 @@
+{
+  "language": "en",
+  "title": "Privacy and data",
+  "updated": "2026-09-29",
+  "summary": "Heritage doesn't collect personal data: no account, no sign-up, no usage analytics, advertising or profiling. Your location, if you allow it, stays on your phone.",
+  "sections": [
+    {
+      "title": "Data controller",
+      "body": "Magnetico Associazione Culturale, which curates the Heritage app. For any privacy question, write to info@magnetico.cloud."
+    },
+    {
+      "title": "What data we collect",
+      "body": "None. We don't run servers that receive data from the app: we don't know who you are, which towns you open or how you use the app."
+    },
+    {
+      "title": "Location",
+      "body": "Only if you allow it, the app uses your phone's location to open the town you're in and show how far locations and places are. This happens on the device: your location is not stored or sent to us or anyone else. You can revoke the permission at any time in your phone's settings; the app keeps working by choosing the town from the list."
+    },
+    {
+      "title": "Data stored on your phone",
+      "body": "Only your preferences (chosen town, language, tutorial seen) and a copy of the content for offline use stay on the device. They never leave your phone and are deleted when you uninstall the app."
+    },
+    {
+      "title": "Third-party services",
+      "body": "To show content and maps, the app downloads data from a few providers, which receive the technical information needed for each connection (such as your IP address and device type) and handle it under their own privacy policies: GitHub (texts, photos, audio and 360° tours), CARTO with OpenStreetMap data (map), Apple Maps on iPhone and Google Maps on Android. Calls, emails, websites and navigation open in your phone's apps, under their own terms."
+    },
+    {
+      "title": "Your rights",
+      "body": "Processing follows EU Regulation 2016/679 (GDPR). Since we don't keep any data about you, there's nothing to access or delete on our side; you can still write to info@magnetico.cloud and, if you wish, contact the Italian Data Protection Authority (Garante per la protezione dei dati personali)."
+    },
+    {
+      "title": "Changes",
+      "body": "If the app changes how it uses data, we'll update this notice and its last-updated date."
+    }
+  ]
+}

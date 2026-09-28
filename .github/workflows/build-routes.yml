@@ -8,6 +8,8 @@ on:
       - "Comune di */monuments.json"
       - "build_routes.py"
       - "catalog.json"
+      - "privacy/**"
+      - "validate_catalog.py"
       - "Comune di */manifest.json"
       - "Comune di */businesses.json"
       - "Comune di */i18n/**"

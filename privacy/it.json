@@ -1,0 +1,36 @@
+{
+  "language": "it",
+  "title": "Privacy e trattamento dati",
+  "updated": "2026-09-29",
+  "summary": "Heritage non raccoglie dati personali: niente account, niente registrazione, niente statistiche d'uso, pubblicità o profilazione. La posizione, se la concedi, resta sul tuo telefono.",
+  "sections": [
+    {
+      "title": "Titolare del trattamento",
+      "body": "Magnetico Associazione Culturale, che cura l'app Heritage. Per qualsiasi domanda sulla privacy scrivi a info@magnetico.cloud."
+    },
+    {
+      "title": "Quali dati raccogliamo",
+      "body": "Nessuno. Non gestiamo server che ricevono dati dall'app: non sappiamo chi sei, quali comuni apri né come usi l'app."
+    },
+    {
+      "title": "Posizione",
+      "body": "Solo se la concedi, l'app usa la posizione del telefono per aprire il comune in cui ti trovi e mostrare quanto distano tappe e attività. Il calcolo avviene sul dispositivo: la posizione non viene salvata né inviata a noi o ad altri. Puoi revocare il permesso in qualsiasi momento dalle impostazioni del telefono; l'app continua a funzionare scegliendo il comune dall'elenco."
+    },
+    {
+      "title": "Dati salvati sul telefono",
+      "body": "Sul dispositivo restano solo le tue preferenze (comune scelto, lingua, tutorial già visto) e una copia dei contenuti per usarli anche senza rete. Non lasciano il telefono e si cancellano disinstallando l'app."
+    },
+    {
+      "title": "Servizi di terze parti",
+      "body": "Per mostrarti contenuti e mappe l'app scarica dati da alcuni fornitori, che ricevono le informazioni tecniche necessarie a ogni connessione (come l'indirizzo IP e il tipo di dispositivo) e le trattano secondo le proprie informative: GitHub (testi, foto, audio e tour 360°), CARTO con dati OpenStreetMap (mappa), Apple Maps su iPhone e Google Maps su Android. Chiamate, email, siti web e navigazione si aprono nelle app del telefono, con le loro condizioni."
+    },
+    {
+      "title": "I tuoi diritti",
+      "body": "Il trattamento segue il Regolamento UE 2016/679 (GDPR). Poiché non conserviamo dati che ti riguardano, non c'è nulla da consultare o cancellare presso di noi; puoi comunque scriverci a info@magnetico.cloud e, se lo ritieni, rivolgerti al Garante per la protezione dei dati personali."
+    },
+    {
+      "title": "Modifiche",
+      "body": "Se l'app cambierà il modo in cui usa i dati aggiorneremo questa informativa, indicando la data dell'ultimo aggiornamento."
+    }
+  ]
+}

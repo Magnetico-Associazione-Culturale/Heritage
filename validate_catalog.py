@@ -73,6 +73,63 @@ for index, entry in enumerate(comuni):
         if value is not None and not str(value).startswith("https://"):
             errors.append(f"{label}: {field} deve essere un URL https")
 
+# ---- informativa privacy (facoltativa ma consigliata: gli store la richiedono) ----
+import re
+
+privacy = catalog.get("privacy")
+if privacy is None:
+    warnings.append("privacy: blocco assente, l'app non potrà mostrare l'informativa")
+elif not isinstance(privacy, dict):
+    errors.append("privacy: deve essere un oggetto")
+else:
+    files = privacy.get("files")
+    default = privacy.get("default_language")
+    if not isinstance(files, dict) or not files:
+        errors.append("privacy.files: deve elencare almeno una lingua ({ \"it\": URL, ... })")
+        files = {}
+    if default not in files:
+        errors.append(f"privacy.default_language '{default}' non è tra le lingue di privacy.files")
+    section_counts = {}
+    for lang, url in files.items():
+        where = f"privacy.files.{lang}"
+        if not isinstance(url, str) or not url.startswith("https://"):
+            errors.append(f"{where}: deve essere un URL https")
+            continue
+        if not url.startswith(REPO_PREFIX):
+            warnings.append(f"{where}: file ospitato fuori da questo repo, non verificato")
+            continue
+        local = unquote(url[len(REPO_PREFIX):])
+        if not os.path.isfile(local):
+            errors.append(f"{where}: file non trovato in questo repo ({local})")
+            continue
+        try:
+            with open(local, encoding="utf-8") as pf:
+                doc = json.load(pf)
+        except ValueError as exc:
+            errors.append(f"{local}: JSON non valido ({exc})")
+            continue
+        if doc.get("language") != lang:
+            errors.append(f"{local}: 'language' è '{doc.get('language')}', atteso '{lang}'")
+        for field in ("title", "summary"):
+            if not isinstance(doc.get(field), str) or not doc[field].strip():
+                errors.append(f"{local}: '{field}' obbligatorio (testo non vuoto)")
+        if not isinstance(doc.get("updated"), str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", doc["updated"]):
+            errors.append(f"{local}: 'updated' deve essere una data AAAA-MM-GG")
+        sections = doc.get("sections")
+        if not isinstance(sections, list) or not sections:
+            errors.append(f"{local}: 'sections' deve essere un array non vuoto")
+            continue
+        for i, section in enumerate(sections):
+            if not isinstance(section, dict) or not all(
+                isinstance(section.get(k), str) and section[k].strip() for k in ("title", "body")
+            ):
+                errors.append(f"{local}: sections[{i}] deve avere 'title' e 'body' non vuoti")
+        section_counts[lang] = (len(sections), doc.get("updated"))
+    if len({count for count, _ in section_counts.values()}) > 1:
+        warnings.append(f"privacy: numero di sezioni diverso tra le lingue {section_counts}: verifica le traduzioni")
+    if len({updated for _, updated in section_counts.values()}) > 1:
+        warnings.append(f"privacy: date 'updated' diverse tra le lingue {section_counts}: verifica le traduzioni")
+
 for w in warnings:
     print(f"AVVISO  {w}")
 for e in errors:
