@@ -266,6 +266,18 @@ l'URL da codificare nel QR: un'unica fonte di verità per entrambi.
 Contiene le info del comune, il suo branding (colori e logo) e il `base_url` dei media.
 `comune.map_center` + `default_zoom` definiscono dove **centrare** la mappa all'avvio.
 `app.theme` contiene i colori e il logo: l'app li applica quando l'utente apre questo comune.
+
+**Colori predefiniti (`app.theme`).** Tutti i comuni usano la palette dell'icona Heritage;
+cambiala solo se un comune ha un'identità visiva sua.
+
+| Campo | Predefinito | Dove si vede nell'app |
+|---|---|---|
+| `primary_color` | `#285666` | Icone, link, "Portami lì", card "Scopri il territorio", pulsanti principali. |
+| `accent_color` | `#285666` | Cerchi delle card della Home (Tour 360°, Vivi, Quiz), tag di categoria dei monumenti, badge "360 gradi", pulsante Tour 360. |
+| `secondary_color` | `#D3E5EA` | Sfondi chiari e piccoli titoli (l'app lo scurisce da sola se serve leggibilità). |
+
+Con un colore accento chiaro l'app mette automaticamente icone e testi scuri sopra.
+Se un campo manca, l'app usa questi stessi valori.
 `app.share_url` è il link condiviso dal pulsante "Condividi l'app": punta alla landing page
 "scarica l'app" del comune, la stessa del QR unico (vedi *Landing page e QR code*).
 `map.config_url` **richiama** il file mappa globale condiviso: provider e chiave (Carto)
@@ -591,7 +603,7 @@ traducibili (**errore**), e segnala i testi non ancora tradotti (**avviso**).
 ## Checklist per un nuovo comune
 
 1. **Clona** una sottocartella esistente (es. `Comune di Bugliano/`) e rinominala `Comune di <Nome>/`.
-2. In `config.json`: aggiorna `comune` (compreso `map_center`), `app.display_name`, i colori, **`media.base_url`** (deve puntare al repo/host del nuovo comune) e **`app.share_url`** (`…/heritage-pages/<Nome>/`, iniziale maiuscola).
+2. In `config.json`: aggiorna `comune` (compreso `map_center`), `app.display_name`, i colori (se non si usano quelli predefiniti), **`media.base_url`** (deve puntare al repo/host del nuovo comune) e **`app.share_url`** (`…/heritage-pages/<Nome>/`, iniziale maiuscola).
 3. In `manifest.json`: aggiorna `comune_id` e `content_version`.
 4. Compila `monuments.json`, `itineraries.json`, `quizzes.json` e, se vuoi la sezione Vivi,
    `businesses.json` (registrandolo in `files.businesses` del manifest).
