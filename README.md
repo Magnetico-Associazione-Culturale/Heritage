@@ -8,6 +8,11 @@ Tappe, Tour (360°), Vivi, Info** — e legge i contenuti da file JSON + media a
 legati.
 Aggiornando i contenuti, l'app si aggiorna da remoto senza ripubblicare sugli store.
 
+> **Licenza:** i contenuti di questo repository sono © Magnetico Associazione Culturale e
+> dei rispettivi autori, tutti i diritti riservati, pubblicati solo per l'uso nell'app
+> Heritage (i tracciati degli itinerari derivano da OpenStreetMap, licenza ODbL). Vedi
+> [LICENSE](LICENSE); per richieste di utilizzo: info@magnetico.cloud.
+
 Ogni comune ha la propria **sottocartella** `Comune di <Nome>/`, completa e autonoma, ed è
 elencato nel **catalogo** `catalog.json` nella radice. Per aggiungere un comune si **clona**
 una sottocartella esistente, se ne adattano i contenuti e lo si aggiunge al catalogo: l'app
