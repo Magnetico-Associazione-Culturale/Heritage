@@ -24,9 +24,9 @@
     "publisher": "Magnetico Associazione Culturale",
     "share_url": "https://magnetico-associazione-culturale.github.io/heritage-pages/Bugliano/",
     "theme": {
-      "primary_color": "#285666",
-      "secondary_color": "#D3E5EA",
-      "accent_color": "#285666",
+      "primary_color": "#B3261E",
+      "secondary_color": "#F6DCDA",
+      "accent_color": "#B3261E",
       "logo": "media/branding/logo.png",
       "splash_image": "media/branding/splash.jpg"
     }
