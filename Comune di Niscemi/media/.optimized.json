@@ -1,0 +1,91 @@
+{
+  "media/audio/it/01_chiesa_madre.m4a": {
+    "kind": "audio",
+    "source": "media/audio/it/01_chiesa_madre.mp3",
+    "source_bytes": 8945229,
+    "profile_version": 1,
+    "encoder": "afconvert",
+    "bytes": 3076582,
+    "sha256": "e62fb784ed5c1c174fe07dd34ea6e800eee6c019824a975b22d0b6b386c82165"
+  },
+  "media/branding/logo.webp": {
+    "kind": "logo",
+    "source": "media/branding/logo.png",
+    "source_bytes": 395896,
+    "profile_version": 1,
+    "bytes": 185922,
+    "sha256": "b921a08b24539c552d6d892a9a63745c1370ceea593a9a9db417dd8ac53953e8"
+  },
+  "media/branding/splash.webp": {
+    "kind": "foto",
+    "source": "media/branding/splash.jpg",
+    "source_bytes": 1033357,
+    "profile_version": 1,
+    "bytes": 293716,
+    "sha256": "9995f74ca31b28eb45c6fb90e06fe61b62d8e81bb5d2699cc656f284c25ba5e1"
+  },
+  "media/images/360/chiesa-madre-navata.webp": {
+    "kind": "360",
+    "source": "media/images/360/chiesa-madre-navata.jpg",
+    "source_bytes": 39202816,
+    "profile_version": 1,
+    "bytes": 1362164,
+    "sha256": "a5c8ae9f063f279ae739796832538f8a740aa3db3a104ad75969c7ace3298a5b"
+  },
+  "media/images/360/piazza-vittorio-emanuele.webp": {
+    "kind": "360",
+    "source": "media/images/360/piazza-vittorio-emanuele.jpg",
+    "source_bytes": 4302983,
+    "profile_version": 1,
+    "bytes": 1281092,
+    "sha256": "a4478077daa83d3e5892cb4e1b6170c2c98595d4ae3523233ba81721a6936614"
+  },
+  "media/images/flat/chiesa-madre-santa-maria-itria.jpg": {
+    "kind": "foto",
+    "source": "media/images/flat/chiesa-madre-santa-maria-itria.jpg",
+    "source_bytes": 32238,
+    "profile_version": 1,
+    "bytes": 32238,
+    "sha256": "ca88ebe85887a7ba6772c77bd2c2e0308a9231bdfe27546d0acb74d48a4defc9"
+  },
+  "media/images/flat/palazzo-comunale.webp": {
+    "kind": "foto",
+    "source": "media/images/flat/palazzo-comunale.jpg",
+    "source_bytes": 406563,
+    "profile_version": 1,
+    "bytes": 268636,
+    "sha256": "fc9c9a5f99df80a20dfbb0564c8597ddbd0bf2a06a95530d418c0121e7171819"
+  },
+  "media/images/flat/piazza-vittorio-emanuele.webp": {
+    "kind": "foto",
+    "source": "media/images/flat/piazza-vittorio-emanuele.jpg",
+    "source_bytes": 91276,
+    "profile_version": 1,
+    "bytes": 80628,
+    "sha256": "66c7c944de12e97c45e4457ea316810cfe495a795dabb3a7a6c3ad0a34b2bc8d"
+  },
+  "media/images/flat/santuario-madonna-del-bosco.webp": {
+    "kind": "foto",
+    "source": "media/images/flat/santuario-madonna-del-bosco.jpg",
+    "source_bytes": 2001957,
+    "profile_version": 1,
+    "bytes": 351050,
+    "sha256": "a0f6af989a7a06d508356f6933c491903ec003118a774c3ad7db221a944b5016"
+  },
+  "media/images/itineraries/centro-storico.webp": {
+    "kind": "foto",
+    "source": "media/images/itineraries/centro-storico.jpg",
+    "source_bytes": 33165,
+    "profile_version": 1,
+    "bytes": 13954,
+    "sha256": "5b26a0a8e7d4b821f5168d68f5a3117e540d2c00437c358d0fd28c086c3c8ef9"
+  },
+  "media/images/itineraries/fede-e-natura.webp": {
+    "kind": "foto",
+    "source": "media/images/itineraries/fede-e-natura.jpg",
+    "source_bytes": 32154,
+    "profile_version": 1,
+    "bytes": 13050,
+    "sha256": "5335c7f2c5ed99a57ffb8ef401679840944dc32045c4909cee41d0a19b9466cc"
+  }
+}

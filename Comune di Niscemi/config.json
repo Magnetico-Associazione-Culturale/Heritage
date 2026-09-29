@@ -27,8 +27,8 @@
       "primary_color": "#285666",
       "secondary_color": "#D3E5EA",
       "accent_color": "#285666",
-      "logo": "media/branding/logo.png",
-      "splash_image": "media/branding/splash.jpg"
+      "logo": "media/branding/logo.webp",
+      "splash_image": "media/branding/splash.webp"
     }
   },
   "media": {

@@ -10,7 +10,7 @@
     "address": "Piazza Centrale, 1, Bugliano, PI, Italia",
     "tags": ["barocco", "centro storico"],
     "audio": {
-      "path": "media/audio/it/01_chiesa_san_giovanni.mp3",
+      "path": "media/audio/it/01_chiesa_san_giovanni.m4a",
       "duration": 180,
       "language": "it",
       "title": "Audioguida - Chiesa di San Giovanni",
@@ -20,19 +20,19 @@
       {
         "role": "thumbnail",
         "format": "standard",
-        "path": "media/images/flat/chiesa-san-giovanni.jpg",
+        "path": "media/images/flat/chiesa-san-giovanni.webp",
         "title": "Facciata della Chiesa di San Giovanni",
         "alt": "Chiesa di San Giovanni vista esterna"
       },
       {
         "format": "360",
-        "path": "media/images/360/chiesa-san-giovanni-ingresso.jpg",
+        "path": "media/images/360/chiesa-san-giovanni-ingresso.webp",
         "title": "Navata centrale",
         "alt": "Vista panoramica 360 della navata centrale"
       },
       {
         "format": "360",
-        "path": "media/images/360/chiesa-san-giovanni-altare.jpg",
+        "path": "media/images/360/chiesa-san-giovanni-altare.webp",
         "title": "Altare maggiore",
         "alt": "Vista panoramica 360 dell'altare maggiore"
       }
@@ -63,7 +63,7 @@
       {
         "role": "thumbnail",
         "format": "standard",
-        "path": "media/images/flat/palazzo-comunale.jpg",
+        "path": "media/images/flat/palazzo-comunale.webp",
         "title": "Palazzo Comunale",
         "alt": "Palazzo Comunale di Bugliano"
       }

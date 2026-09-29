@@ -9,7 +9,7 @@
     "duration_minutes": 90,
     "distance_km": 0.06,
     "travel_mode": "walking",
-    "cover_image": "media/images/itineraries/centro-storico.jpg",
+    "cover_image": "media/images/itineraries/centro-storico.webp",
     "stops": [
       {
         "order": 1,

@@ -8,7 +8,7 @@
       {
         "id": "q1",
         "text": "Chi e' la patrona di Niscemi?",
-        "image": "media/images/flat/santuario-madonna-del-bosco.jpg",
+        "image": "media/images/flat/santuario-madonna-del-bosco.webp",
         "options": [
           { "id": "a", "text": "Maria Santissima del Bosco", "correct": true },
           { "id": "b", "text": "Santa Rosalia", "correct": false },

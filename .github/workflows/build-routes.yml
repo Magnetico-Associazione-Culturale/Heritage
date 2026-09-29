@@ -19,8 +19,10 @@ on:
 permissions:
   contents: write
 
+# Stesso gruppo di "Ottimizza media": i due bot non committano mai in contemporanea.
 concurrency:
-  group: build-routes
+  group: content-bot
+  cancel-in-progress: false
 
 jobs:
   routes:
@@ -53,4 +55,5 @@ jobs:
           git config user.email "41898699+github-actions[bot]@users.noreply.github.com"
           git add "Comune di */itineraries.json"
           git commit -m "Aggiorna percorsi itinerari [automatico]"
+          git pull --rebase
           git push

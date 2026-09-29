@@ -10,7 +10,7 @@
     "address": "Piazza Vittorio Emanuele, Niscemi, CL, Italia",
     "tags": ["centro storico", "chiesa madre"],
     "audio": {
-      "path": "media/audio/it/01_chiesa_madre.mp3",
+      "path": "media/audio/it/01_chiesa_madre.m4a",
       "duration": 180,
       "language": "it",
       "title": "Audioguida - Chiesa Madre Santa Maria d'Itria",
@@ -26,7 +26,7 @@
       },
       {
         "format": "360",
-        "path": "media/images/360/chiesa-madre-navata.jpg",
+        "path": "media/images/360/chiesa-madre-navata.webp",
         "title": "Navata centrale",
         "alt": "Vista panoramica 360 della navata centrale"
       }
@@ -57,7 +57,7 @@
       {
         "role": "thumbnail",
         "format": "standard",
-        "path": "media/images/flat/santuario-madonna-del-bosco.jpg",
+        "path": "media/images/flat/santuario-madonna-del-bosco.webp",
         "title": "Santuario della Madonna del Bosco",
         "alt": "Santuario della Madonna del Bosco di Niscemi"
       }
@@ -85,13 +85,13 @@
       {
         "role": "thumbnail",
         "format": "standard",
-        "path": "media/images/flat/piazza-vittorio-emanuele.jpg",
+        "path": "media/images/flat/piazza-vittorio-emanuele.webp",
         "title": "Piazza Vittorio Emanuele",
         "alt": "Veduta della piazza principale di Niscemi"
       },
       {
         "format": "360",
-        "path": "media/images/360/piazza-vittorio-emanuele.jpg",
+        "path": "media/images/360/piazza-vittorio-emanuele.webp",
         "title": "Panoramica della piazza",
         "alt": "Vista panoramica a 360 gradi di Piazza Vittorio Emanuele"
       }
@@ -113,7 +113,7 @@
       {
         "role": "thumbnail",
         "format": "standard",
-        "path": "media/images/flat/palazzo-comunale.jpg",
+        "path": "media/images/flat/palazzo-comunale.webp",
         "title": "Palazzo Comunale",
         "alt": "Palazzo Comunale di Niscemi"
       }

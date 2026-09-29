@@ -8,7 +8,7 @@
       {
         "id": "q1",
         "text": "A chi e' dedicata la chiesa madre di Bugliano?",
-        "image": "media/images/flat/chiesa-san-giovanni.jpg",
+        "image": "media/images/flat/chiesa-san-giovanni.webp",
         "options": [
           { "id": "a", "text": "San Giovanni", "correct": true },
           { "id": "b", "text": "San Basilio", "correct": false },

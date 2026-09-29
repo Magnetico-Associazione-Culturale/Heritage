@@ -18,8 +18,8 @@
       "manifest_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/manifest.json",
       "center": { "lat": 37.1469, "lon": 14.3897 },
       "radius_km": 10,
-      "logo_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/media/branding/logo.png",
-      "cover_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/media/branding/splash.jpg",
+      "logo_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/media/branding/logo.webp",
+      "cover_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/media/branding/splash.webp",
       "status": "published"
     },
     {
@@ -30,8 +30,8 @@
       "manifest_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/manifest.json",
       "center": { "lat": 37.6522, "lon": 14.6408 },
       "radius_km": 8,
-      "logo_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/media/branding/logo.png",
-      "cover_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/media/branding/splash.jpg",
+      "logo_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/media/branding/logo.webp",
+      "cover_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/media/branding/splash.webp",
       "status": "preview"
     }
   ]

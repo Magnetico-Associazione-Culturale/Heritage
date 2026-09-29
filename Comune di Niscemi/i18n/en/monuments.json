@@ -10,7 +10,7 @@
         "title": "Façade of the Mother Church",
         "alt": "Exterior view of the Mother Church of Santa Maria d'Itria"
       },
-      "media/images/360/chiesa-madre-navata.jpg": {
+      "media/images/360/chiesa-madre-navata.webp": {
         "title": "Central nave",
         "alt": "360° panoramic view of the central nave"
       }
@@ -29,7 +29,7 @@
     "address": "Contrada Bosco, Niscemi, CL, Italy",
     "tags": ["sanctuary", "patron saint", "cork oak forest"],
     "images": {
-      "media/images/flat/santuario-madonna-del-bosco.jpg": {
+      "media/images/flat/santuario-madonna-del-bosco.webp": {
         "title": "Sanctuary of the Madonna del Bosco",
         "alt": "Sanctuary of the Madonna del Bosco in Niscemi"
       }
@@ -48,11 +48,11 @@
     "address": "Piazza Vittorio Emanuele, Niscemi, CL, Italy",
     "tags": ["historic centre", "square"],
     "images": {
-      "media/images/flat/piazza-vittorio-emanuele.jpg": {
+      "media/images/flat/piazza-vittorio-emanuele.webp": {
         "title": "Piazza Vittorio Emanuele",
         "alt": "View of Niscemi's main square"
       },
-      "media/images/360/piazza-vittorio-emanuele.jpg": {
+      "media/images/360/piazza-vittorio-emanuele.webp": {
         "title": "Panorama of the square",
         "alt": "360° panoramic view of Piazza Vittorio Emanuele"
       }
@@ -65,7 +65,7 @@
     "address": "Piazza del Municipio, Niscemi, CL, Italy",
     "tags": ["institutional"],
     "images": {
-      "media/images/flat/palazzo-comunale.jpg": {
+      "media/images/flat/palazzo-comunale.webp": {
         "title": "Town Hall",
         "alt": "Niscemi Town Hall"
       }

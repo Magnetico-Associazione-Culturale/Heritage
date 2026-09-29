@@ -27,6 +27,7 @@ lo mostra senza bisogno di una nuova pubblicazione.
 ├── README.md                    # Questa guida
 ├── catalog.json                 # Catalogo dei comuni mostrati nell'app (punto d'ingresso)
 ├── validate_catalog.py          # Validatore del catalogo (eseguire nella radice)
+├── optimize_media.py            # Converte i media in formati leggeri (lo lancia l'Action)
 ├── map.config.json              # Config mappa globale condivisa (provider + chiave Carto)
 ├── privacy/                     # Informativa privacy dell'app, un file per lingua (it.json, en.json, …)
 │
@@ -41,6 +42,7 @@ lo mostra senza bisogno di una nuova pubblicazione.
 │   ├── i18n/                    # Traduzioni (opzionali), una cartella per lingua
 │   │   └── en/                  # Stessi nomi file, solo i testi, per id
 │   └── media/                   # Tutti gli asset (relativi a media.base_url)
+│       ├── .optimized.json      # Registro dei file già ottimizzati (generato, non modificare)
 │       ├── images/
 │       │   ├── flat/            # Foto standard
 │       │   ├── 360/             # Immagini equirettangolari per tour 360°
@@ -91,8 +93,8 @@ https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main
       "manifest_url": "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Niscemi/manifest.json",
       "center": { "lat": 37.1469, "lon": 14.3897 },
       "radius_km": 10,
-      "logo_url": "https://…/Comune%20di%20Niscemi/media/branding/logo.png",
-      "cover_url": "https://…/Comune%20di%20Niscemi/media/branding/splash.jpg",
+      "logo_url": "https://…/Comune%20di%20Niscemi/media/branding/logo.webp",
+      "cover_url": "https://…/Comune%20di%20Niscemi/media/branding/splash.webp",
       "status": "published"
     }
   ]
@@ -188,13 +190,57 @@ url_completo = config.media.base_url + path_relativo
 ```
 
 Esempio: con `base_url = "https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/"`
-e `path = "media/images/flat/chiesa-san-giovanni.jpg"`, l'app scarica
-`https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/media/images/flat/chiesa-san-giovanni.jpg`.
+e `path = "media/images/flat/chiesa-san-giovanni.webp"`, l'app scarica
+`https://raw.githubusercontent.com/Magnetico-Associazione-Culturale/Heritage/main/Comune%20di%20Bugliano/media/images/flat/chiesa-san-giovanni.webp`.
 
 Il `base_url` deve terminare con `/` e gli spazi nel nome della cartella vanno scritti come `%20`.
 
 **Vantaggio:** per spostare l'hosting (es. da GitHub a un CDN) cambi *una sola riga* in
 `config.json`. Non toccare mai gli altri file.
+
+---
+
+## Media: formati e ottimizzazione automatica
+
+**Carica i media così come escono da fotocamera o registratore** (JPG, PNG, HEIC, MP3, WAV,
+M4A…) nelle cartelle `media/...` e scrivi nei JSON il loro path, come sempre. Al push la
+GitHub Action **"Ottimizza media"** li converte in formati leggeri, senza perdita di qualità
+visibile, e fa un commit automatico:
+
+| Tipo | Riconosciuto da | Risultato |
+|---|---|---|
+| Tour 360° | `format: "360"` nei JSON, o cartella `media/images/360/` | WebP qualità 88, lato lungo max **4096 px** (il massimo che l'app mostra: i pixel in più verrebbero scartati sul telefono) |
+| Logo | `media/branding/logo*`, o PNG con trasparenza | WebP qualità 90, max 1024 px, trasparenza mantenuta |
+| Foto | tutte le altre immagini | WebP qualità 82, lato lungo max **2048 px** |
+| Audio | mp3, wav, m4a, aac, … | AAC **mono 64 kbps** in `.m4a` (qualità piena per la voce), pronto per lo streaming |
+| QR | cartella `media/qr/` | non toccati (restano PNG senza perdita) |
+
+Per ogni file convertito l'Action:
+
+1. sostituisce l'originale con la versione ottimizzata (`chiesa.jpg` → `chiesa.webp`);
+2. aggiorna **da sola** i path nei JSON del comune (traduzioni comprese, anche dove il path
+   è una chiave) e gli URL `logo_url`/`cover_url` in `catalog.json`;
+3. alza `content_version` nel manifest, così l'app scarica i JSON con i nuovi path;
+4. registra il file in `media/.optimized.json`: **un file già ottimizzato non viene mai
+   ricompresso**, quindi la qualità non peggiora a ogni push. Per rifarlo, carica un nuovo
+   originale.
+
+Non vengono mai ingranditi file piccoli; una foto già leggera che guadagnerebbe meno del 10%
+resta com'è. Le immagini vengono ruotate secondo l'orientamento della fotocamera, convertite
+in sRGB e **private dei metadati** (EXIF, coordinate GPS).
+
+> **Tieni gli originali altrove** (Drive, disco): nel repo resta solo la versione ottimizzata.
+> L'originale sparisce dai file ma resta nella cronologia git.
+
+Si può lanciare anche in locale, per vedere il risultato prima del push (serve
+`pip install pillow pillow-heif`; per l'audio `ffmpeg`, oppure `afconvert` già incluso in macOS):
+
+```
+python3 optimize_media.py --dry-run                # cosa farebbe, senza toccare nulla
+python3 optimize_media.py "Comune di Niscemi"     # converte un comune
+```
+
+`validate.py` avvisa se un JSON punta a un media non ancora ottimizzato.
 
 ---
 
@@ -347,7 +393,7 @@ images, history). Campi:
 ### audio
 ```json
 {
-  "path": "media/audio/it/01_chiesa.mp3",
+  "path": "media/audio/it/01_chiesa.m4a",
   "duration": 180,
   "language": "it",
   "title": "Audioguida - ...",
@@ -360,7 +406,7 @@ images, history). Campi:
 {
   "role": "thumbnail",      // opzionale; "thumbnail" = immagine principale in lista
   "format": "standard",     // "standard" = foto normale | "360" = tour panoramico
-  "path": "media/images/flat/x.jpg",
+  "path": "media/images/flat/x.webp",
   "title": "...",
   "alt": "..."              // testo alternativo per accessibilità
 }
@@ -429,7 +475,7 @@ Array di quiz. `monument_id` può essere `null` (quiz generale) o l'id di un mon
     {
       "id": "q1",
       "text": "...",
-      "image": "media/images/flat/x.jpg",   // o null
+      "image": "media/images/flat/x.webp",   // o null
       "options": [
         { "id": "a", "text": "...", "correct": true },
         { "id": "b", "text": "...", "correct": false }
@@ -490,7 +536,7 @@ compare. Il file è un **oggetto** con due array:
       "languages": ["it", "en"],
       "accessible": true,
       "images": [
-        { "role": "thumbnail", "path": "media/images/businesses/trattoria-da-mario.jpg", "alt": "Sala interna" }
+        { "role": "thumbnail", "path": "media/images/businesses/trattoria-da-mario.webp", "alt": "Sala interna" }
       ],
       "near_monuments": ["chiesa-madre-santa-maria-itria"],
       "active": true,
@@ -595,7 +641,7 @@ Il file `businesses` ha due sezioni, una per array:
     "trattoria-da-mario": {
       "short_description": "Traditional Niscemi cooking.",
       "tags": ["local cuisine", "vegetarian"],
-      "images": { "media/images/businesses/trattoria-da-mario.jpg": { "alt": "Dining room" } }
+      "images": { "media/images/businesses/trattoria-da-mario.webp": { "alt": "Dining room" } }
     }
   }
 }
@@ -647,7 +693,9 @@ traducibili (**errore**), e segnala i testi non ancora tradotti (**avviso**).
 3. In `manifest.json`: aggiorna `comune_id` e `content_version`.
 4. Compila `monuments.json`, `itineraries.json`, `quizzes.json` e, se vuoi la sezione Vivi,
    `businesses.json` (registrandolo in `files.businesses` del manifest).
-5. Carica i media nelle cartelle `media/...` con gli stessi path indicati nei JSON.
+5. Carica i media nelle cartelle `media/...` con gli stessi path indicati nei JSON: vanno bene
+   gli originali (JPG, PNG, HEIC, MP3, WAV…), al push l'Action li ottimizza e aggiorna i path
+   (vedi *Media: formati e ottimizzazione automatica*).
    *(Opzionale)* aggiungi le traduzioni in `i18n/<lingua>/` e registrale nel manifest
    (vedi *Traduzioni*).
 6. **Mappa:** verifica che `config.json` abbia `map.config_url` (lo stesso per tutti i

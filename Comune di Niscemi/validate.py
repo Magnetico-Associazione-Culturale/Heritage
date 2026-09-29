@@ -5,7 +5,7 @@ Uso:  python3 validate.py
 Esegui dalla radice del repo del comune. Verifica:
   - tutti i JSON sono validi
   - ogni monument_id referenziato in itinerari/quiz esiste
-  - ogni path di media puntato dai JSON esiste su disco
+  - ogni path di media puntato dai JSON esiste su disco (e avvisa se non è ancora ottimizzato)
   - i campi obbligatori dei monumenti sono presenti
   - le attività (businesses.json, se elencato nel manifest) hanno categoria esistente,
     near_monuments esistenti, orari nel formato corretto e immagini presenti
@@ -34,11 +34,30 @@ def load(name):
         return None
 
 
+OPTIMIZED_EXT = (".webp", ".m4a")
+# JPEG/PNG tenuti apposta da optimize_media.py (risparmio sotto il 10%) sono nel suo registro.
+OPTIMIZED_LOG = "media/.optimized.json"
+
+
+def optimized_paths():
+    try:
+        with open(OPTIMIZED_LOG, encoding="utf-8") as f:
+            return set(json.load(f))
+    except (OSError, ValueError):
+        return set()
+
+
+OPTIMIZED = optimized_paths()
+
+
 def check_path(path, where):
     if not path:
         return
     if not os.path.exists(path):
         ERRORS.append(f"Media mancante ({where}): {path}")
+    elif not path.lower().endswith(OPTIMIZED_EXT) and path not in OPTIMIZED and not path.startswith("media/qr/"):
+        WARN.append(f"Media non ottimizzato ({where}): {path}: lo converte l'Action "
+                    f"'Ottimizza media' al push (o python3 optimize_media.py nella radice)")
 
 
 def tr_obj(lang, where, tr, allowed):

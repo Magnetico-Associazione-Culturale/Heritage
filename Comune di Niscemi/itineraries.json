@@ -9,7 +9,7 @@
     "duration_minutes": 90,
     "distance_km": 0.11,
     "travel_mode": "walking",
-    "cover_image": "media/images/itineraries/centro-storico.jpg",
+    "cover_image": "media/images/itineraries/centro-storico.webp",
     "stops": [
       {
         "order": 1,
@@ -60,7 +60,7 @@
     "duration_minutes": 120,
     "distance_km": 1.01,
     "travel_mode": "walking",
-    "cover_image": "media/images/itineraries/fede-e-natura.jpg",
+    "cover_image": "media/images/itineraries/fede-e-natura.webp",
     "stops": [
       {
         "order": 1,

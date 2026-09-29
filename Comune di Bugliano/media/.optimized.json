@@ -1,0 +1,67 @@
+{
+  "media/audio/it/01_chiesa_san_giovanni.m4a": {
+    "kind": "audio",
+    "source": "media/audio/it/01_chiesa_san_giovanni.mp3",
+    "source_bytes": 8945229,
+    "profile_version": 1,
+    "encoder": "afconvert",
+    "bytes": 3076582,
+    "sha256": "3da6404bf59e25a5919f30a62d25a94cd444f76b0786a46c2022eb09964ebcaf"
+  },
+  "media/branding/logo.webp": {
+    "kind": "logo",
+    "source": "media/branding/logo.png",
+    "source_bytes": 8213,
+    "profile_version": 1,
+    "bytes": 3690,
+    "sha256": "bbbf0248346a9dc298013a44ab834be632cff67cc906fa4d5ae93f9d82bcf61c"
+  },
+  "media/branding/splash.webp": {
+    "kind": "foto",
+    "source": "media/branding/splash.jpg",
+    "source_bytes": 34907,
+    "profile_version": 1,
+    "bytes": 13636,
+    "sha256": "ceeb1e4ae168ae122041e4af92659e954c45b12caef7605a1f4da5201d36d768"
+  },
+  "media/images/360/chiesa-san-giovanni-altare.webp": {
+    "kind": "360",
+    "source": "media/images/360/chiesa-san-giovanni-altare.jpg",
+    "source_bytes": 105407,
+    "profile_version": 1,
+    "bytes": 49556,
+    "sha256": "2abed0f973f4148a6bc268dee77124ccdbb26ae0d33603f210849b5c8f8c583b"
+  },
+  "media/images/360/chiesa-san-giovanni-ingresso.webp": {
+    "kind": "360",
+    "source": "media/images/360/chiesa-san-giovanni-ingresso.jpg",
+    "source_bytes": 115655,
+    "profile_version": 1,
+    "bytes": 56822,
+    "sha256": "8afa0395f54193b6ec8786d81352d3514aaade0ee069357f285652022270235e"
+  },
+  "media/images/flat/chiesa-san-giovanni.webp": {
+    "kind": "foto",
+    "source": "media/images/flat/chiesa-san-giovanni.jpg",
+    "source_bytes": 25721,
+    "profile_version": 1,
+    "bytes": 10826,
+    "sha256": "44cca36e58d51b5143b2490cde7ae67f98f59b4dd503c1f16a76c0620bad26fb"
+  },
+  "media/images/flat/palazzo-comunale.webp": {
+    "kind": "foto",
+    "source": "media/images/flat/palazzo-comunale.jpg",
+    "source_bytes": 16986,
+    "profile_version": 1,
+    "bytes": 7094,
+    "sha256": "f9fbbf0af3a3b41184f5a0077beab30f9ed4a42eb8a4424c2177d6ab9f9768f7"
+  },
+  "media/images/itineraries/centro-storico.webp": {
+    "kind": "foto",
+    "source": "media/images/itineraries/centro-storico.jpg",
+    "source_bytes": 33165,
+    "profile_version": 1,
+    "bytes": 13954,
+    "sha256": "5b26a0a8e7d4b821f5168d68f5a3117e540d2c00437c358d0fd28c086c3c8ef9"
+  }
+}
