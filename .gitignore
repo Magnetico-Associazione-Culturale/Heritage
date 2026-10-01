@@ -1,2 +1,5 @@
 # File di sistema macOS
 .DS_Store
+
+# File di blocco di Excel/Office (creati mentre un file è aperto)
+~$*

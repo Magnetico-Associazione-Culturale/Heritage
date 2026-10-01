@@ -159,6 +159,11 @@ blocco `privacy` di `catalog.json`:
 L'app apre il file della lingua scelta dall'utente; se manca usa l'inglese, poi
 `default_language`. Lo tiene in cache, così resta leggibile anche offline.
 
+**Versione web** (il link da indicare ad App Store e Google Play):
+**https://heritage.magnetico.cloud/privacy/**, pagina `privacy/index.html` del repo
+`heritage-pages`. Legge **gli stessi file** dal catalogo, quindi app e sito restano sempre
+allineati; la lingua segue il browser, oppure `?lang=en`.
+
 Struttura di `privacy/<lingua>.json`:
 
 | Campo | Tipo | Obbl. | Note |
@@ -302,25 +307,29 @@ che apre l'app già installata direttamente sul comune (`<id>` è quello del cat
 
 Le landing page sono servite da **GitHub Pages** sul repo dedicato
 [`heritage-pages`](https://github.com/Magnetico-Associazione-Culturale/heritage-pages),
-con una sottocartella per comune:
+con il dominio **`heritage.magnetico.cloud`** (file `CNAME` di quel repo) e una sottocartella
+per comune:
 
 ```
 heritage-pages/
 ├── Niscemi/
-│   └── index.html      → https://magnetico-associazione-culturale.github.io/heritage-pages/Niscemi/
+│   └── index.html      → https://heritage.magnetico.cloud/Niscemi/
 └── <Nome>/
-    └── index.html      → https://magnetico-associazione-culturale.github.io/heritage-pages/<Nome>/
+    └── index.html      → https://heritage.magnetico.cloud/<Nome>/
 ```
 
 **Convenzione URL:**
 
 ```
-https://magnetico-associazione-culturale.github.io/heritage-pages/<Nome>/
+https://heritage.magnetico.cloud/<Nome>/
 ```
 
 - `<Nome>` è il nome del comune con l'**iniziale maiuscola** (es. `Niscemi`, `Bugliano`).
   GitHub Pages distingue maiuscole e minuscole: `niscemi/` **non** funziona.
 - L'URL termina sempre con `/`.
+- I vecchi indirizzi `magnetico-associazione-culturale.github.io/heritage-pages/<Nome>/`
+  (QR e link già distribuiti) reindirizzano in automatico al dominio: continuano a funzionare
+  finché il repo `heritage-pages` mantiene nome e dominio personalizzato.
 
 L'URL è salvato in `config.json` → `app.share_url` ed è usato dal **pulsante "Condividi
 l'app"**: l'app apre il foglio di condivisione nativo (WhatsApp, messaggi, email…) con
@@ -689,7 +698,7 @@ traducibili (**errore**), e segnala i testi non ancora tradotti (**avviso**).
 ## Checklist per un nuovo comune
 
 1. **Clona** una sottocartella esistente (es. `Comune di Bugliano/`) e rinominala `Comune di <Nome>/`.
-2. In `config.json`: aggiorna `comune` (compreso `map_center`), `app.display_name`, i colori (se non si usano quelli predefiniti), **`media.base_url`** (deve puntare al repo/host del nuovo comune) e **`app.share_url`** (`…/heritage-pages/<Nome>/`, iniziale maiuscola).
+2. In `config.json`: aggiorna `comune` (compreso `map_center`), `app.display_name`, i colori (se non si usano quelli predefiniti), **`media.base_url`** (deve puntare al repo/host del nuovo comune) e **`app.share_url`** (`https://heritage.magnetico.cloud/<Nome>/`, iniziale maiuscola).
 3. In `manifest.json`: aggiorna `comune_id` e `content_version`.
 4. Compila `monuments.json`, `itineraries.json`, `quizzes.json` e, se vuoi la sezione Vivi,
    `businesses.json` (registrandolo in `files.businesses` del manifest).
